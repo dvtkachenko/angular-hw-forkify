@@ -1,0 +1,22 @@
+<div class="container">
+  <mat-card class="auth-card">
+    <mat-card-title>Login</mat-card-title>
+    <form (ngSubmit)="onLogin()">
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="email" [(ngModel)]="email" name="email">
+        </mat-form-field>        
+        <mat-form-field class="full-width">
+          <input type="password" matInput placeholder="password" [(ngModel)]="password" name="password">
+        </mat-form-field>        
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </mat-card-content>
+    </form>
+    <div>
+      <a routerLink="/reset-password">Reset password</a>
+    </div>
+    <div>
+      <a routerLink="/signup">Sign up</a>
+    </div>
+  </mat-card>
+</div>
