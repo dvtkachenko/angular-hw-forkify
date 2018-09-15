@@ -22,6 +22,8 @@ export class ResetPasswordComponent implements OnInit {
   public resetPasswordForm: FormGroup;
 
   public errorMatcher: ErrorStateMatcher;
+  
+  public errorMessage: string;
 
   constructor(
     public resetDialog: MatDialog, 
@@ -31,14 +33,24 @@ export class ResetPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.errorMatcher = new ResetPasswordErrorStateMatcher()
+    if (this.authService.isAuth()) {
+      this.router.navigate(['/']);      
+    }
+    this.errorMatcher = new ResetPasswordErrorStateMatcher();
     this.resetPasswordForm = this.creatResetPasswordForm();
   }
 
   onResetPassword(): void {
-    this.showResetDialog();
-    // this.authService.resetPassword(this.resetPasswordForm.value.email)
-    //   .then(res => console.log(res));
+    
+    this.errorMessage = null;
+ 
+    this.authService.resetPassword(this.resetPasswordForm.value.email)
+    .then(res => {
+      this.showResetDialog();
+    })
+    .catch(error => {
+      this.errorMessage = error;
+    });
   }
 
   private showResetDialog(): void {
@@ -47,19 +59,12 @@ export class ResetPasswordComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.data = "Reset password email was sent";
 
     const dialogRef = this.resetDialog.open(ConfirmDialogComponent, dialogConfig);
 
-//     const dialogRef = this.resetDialog.open(ConfirmDialogComponent, {
-//       width: '250px',
-      
-// //      data: {name: this.name, animal: this.animal}
-// //      data: "Reset password email was sent"
-//     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-//      this.animal = result;
+       this.router.navigate(['login']); 
     });    
   }
 

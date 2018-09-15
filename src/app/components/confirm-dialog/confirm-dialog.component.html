@@ -1,18 +1,6 @@
-<h2 mat-dialog-title>Reset password</h2>
-<mat-dialog-content>data</mat-dialog-content>
-<mat-dialog-actions>
-  <!-- <button mat-button mat-dialog-close>No</button> -->
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button [mat-dialog-close]="true">Ok</button>
-</mat-dialog-actions>
-
-
-<!-- <mat-card>
-  <mat-card-content>
-    <p>{{ data }}</p>
-  </mat-card-content>
-  <mat-card-content>
-    <p>Reset password email was sent</p> 
-    <button mat-raised-button color="primary" type="submit">Ok</button>
-  </mat-card-content>
-</mat-card> -->
+<div class="confirm-dialog">
+  <mat-dialog-content>
+    <p> {{ data }} </p>
+  </mat-dialog-content>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Ok</button>
+</div>

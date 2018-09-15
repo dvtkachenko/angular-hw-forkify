@@ -1,3 +1,31 @@
-<p>
-  signup works!
-</p>
+<div class="container">
+  <mat-card class="error-card" *ngIf="errorMessage">
+    <mat-card-content>
+      <p> {{ errorMessage }} </p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="auth-card">
+    <mat-card-title>Signup</mat-card-title>
+    <form novalidate [formGroup]="signupForm" (ngSubmit)="onSignup()">
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="email" name="email" formControlName="email" [errorStateMatcher]="errorMatcher">
+          <mat-error *ngIf="signupForm.get('email').hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="signupForm.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input type="password" matInput placeholder="password" name="password" formControlName="password"
+            [errorStateMatcher]="errorMatcher">
+          <mat-error [hidden]="signupForm.get('password').valid" *ngFor="let error of signupForm.get('password').errors | keyvalue">
+            {{ error.value }}
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Signup</button>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

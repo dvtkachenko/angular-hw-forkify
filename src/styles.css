@@ -20,3 +20,14 @@
     width: 50%;
     margin: 0 auto;
 }
+
+.error-card {
+    width: 50%;
+    margin: 4px auto;
+    color: #86181d;
+    background-color: #ffdce0;
+}
+
+.confirm-dialog {
+    text-align: center;
+}
