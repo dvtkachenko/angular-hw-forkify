@@ -24,7 +24,7 @@
             {{ error.value }}
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Signup</button>
+        <button [ngStyle]="getMarginTopFrom(signupForm.get('password'))" mat-raised-button color="primary" type="submit">Signup</button>
       </mat-card-content>
     </form>
   </mat-card>

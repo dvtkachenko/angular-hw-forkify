@@ -24,6 +24,8 @@ export class SignupComponent implements OnInit {
   
   public errorMatcher: ErrorStateMatcher;
 
+//  public marginTop: string = "{'margin-top' : '2.5em'}";
+
   constructor(private fb: FormBuilder,
     private router: Router,
     private authService: AuthService) { }
@@ -103,5 +105,19 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [this.passwordValidator]]
     });
+  }
+
+  // this way handle error message markup issue implemented
+  // to test how it works 
+  public getMarginTopFrom(bottomControl: FormControl): Object {
+
+    let startMarginValue: number = 0.75;
+    if (bottomControl.invalid && (bottomControl.dirty || bottomControl.touched)) {
+      for (let error in bottomControl.errors) {
+        startMarginValue = startMarginValue + 0.5;
+      }
+    } 
+
+    return { 'margin-top' : `${startMarginValue}em` };
   }
 }
