@@ -24,8 +24,6 @@ export class SignupComponent implements OnInit {
   
   public errorMatcher: ErrorStateMatcher;
 
-//  public marginTop: string = "{'margin-top' : '2.5em'}";
-
   constructor(private fb: FormBuilder,
     private router: Router,
     private authService: AuthService) { }
